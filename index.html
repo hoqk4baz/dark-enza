@@ -131,10 +131,11 @@ alert(monthArray[date.getMonth()] + " " + date.getDate() + ", " + year)
 }
 window.onload=clock;
                 renderTime();
-            </script>
-         <form name="clockForm">
+<form name="clockForm">
 <input type="button" name="clockButton" value="Yükleniyorr..." onClick="showDate()" />
 </form>
+            </script>
+         
                     </div>
                 </div>
  
@@ -648,32 +649,36 @@ window.onload=clock;
     </script>
     <script>
                 function renderTime() {
-                var currentTime = new Date();
-                var diem = "AM";
-                var h = currentTime.getHours();
-                var m = currentTime.getMinutes();
-                var s = currentTime.getSeconds();
-                setTimeout('renderTime()',1000);
-                if (h == 0) {
-                    h = 12;
-                } else if (h > 12) { 
-                    h = h - 12;
-                    diem="PM";
-                }
-                if (h < 10) {
-                    h = "0" + h;
-                }
-                if (m < 10) {
-                    m = "0" + m;
-                }
-                if (s < 10) {
-                    s = "0" + s;
-                }
-                var myClock = document.getElementById('clockDisplay');
-                myClock.textContent = h + ":" + m + ":" + s + " " + diem;
-                myClock.innerText = h + ":" + m + ":" + s + " " + diem;
-                }
+var time = new Date()
+var hr = time.getHours()
+var min = time.getMinutes()
+var sec = time.getSeconds()
+if (hr < 10){
+hr = " " + hr
+}
+if (min < 10){
+min = "0" + min
+}
+if (sec < 10){
+sec = "0" + sec
+}
+document.clockForm.clockButton.value = hr + ":" + min + ":" + sec
+setTimeout("clock()", 1000)
+}
+function showDate(){
+var date = new Date()
+var year = date.getYear()
+if(year < 1000){
+year += 1900
+}
+var monthArray = new Array("Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık")
+alert(monthArray[date.getMonth()] + " " + date.getDate() + ", " + year)
+}
+window.onload=clock;
                 renderTime();
+<form name="clockForm">
+<input type="button" name="clockButton" value="Yükleniyorr..." onClick="showDate()" />
+</form>
             </script>
   
  
